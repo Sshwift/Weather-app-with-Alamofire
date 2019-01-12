@@ -14,8 +14,12 @@ class ViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var errorLabel = UILabel()
     
+    /**
+     НЕ ЗАБУДЬТЕ подставить сюда ключи от сервисов Dark Sky API и OpenCage API
+     Сайт Dark Sky: https://darksky.net/dev (отсюда берем погоду)
+     Сайт OpenCage: https://opencagedata.com (отсюда берем название страну и город)
+    */
     struct apiKeys {
-        //TODO: НЕ ЗАБУДЬТЕ подставить сюда ключи от сервисов Dark Sky API и OpenCage API
         static let darkSkyKey = ""
         static let opencagedataKey = ""
     }
@@ -64,7 +68,6 @@ class ViewController: UIViewController {
                     self.updateUIWhenSomethingGoneWrong(labelText: "Что-то не так с OpenCage API 😭\n(возможно, неверный ключ)")
                     return
                 }
-                print(response.response?.statusCode)
                 let jsonResponse = JSON(rezult)
                 let country = jsonResponse["results"][0]["components"]["country"].stringValue
                 let state = jsonResponse["results"][0]["components"]["state"].stringValue
